@@ -19,7 +19,7 @@
 
 #include <Windows.h>
 
-#define QUER_VERSION "Version 1.0"
+#define QUER_VERSION "Version 1.1"
 
 namespace Quer
 {
