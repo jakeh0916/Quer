@@ -16,6 +16,7 @@
 #include <fstream>
 #include <filesystem>
 #include <format>
+#include <algorithm>
 
 #include <Windows.h>
 
@@ -62,6 +63,7 @@ namespace Quer
             printf("  | Type 'done' to start the queue.        |\n");
             printf("  | Type 'quit' to cancel immediately.     |\n");
             printf("  | Type 'undo' to undo the prev. command. |\n");
+            printf("  | Type 'show' to show currents commands. |\n");
             printf("  +----------------------------------------+\n");
         }
 
@@ -103,11 +105,44 @@ namespace Quer
             {
                 return;
             }
-            // Special command: "undo"
-            else if (currentCommand == "undo" && !queuedCommands.empty())
+            else if (currentCommand == "show")
             {
-                queuedCommands.pop_back();
-                printf("(Command %d will not be performed.)\n", static_cast<unsigned int>(queuedCommands.size()));
+                printf("Showing Current Commands:\n");
+                std::for_each(queuedCommands.cbegin(), queuedCommands.cend(), [=, pos = 0](std::string a) mutable {printf("%d. %s\n", ++pos, a.c_str()); });
+            }
+            // Special command: "undo"
+            else if (currentCommand.substr(0, 4).compare("undo") == 0)
+            {
+                if (queuedCommands.empty())
+                    printf("Enter inputs before deleting\n");
+                else{
+                    if (currentCommand.size() == 4)
+                    {
+                        printf("(Command %d will not be performed.)\n", static_cast<unsigned int>(queuedCommands.size() + 1));
+                        queuedCommands.pop_back();
+                    }
+                    else{
+                        int remove_at;
+                        try {
+                            remove_at = std::stoi(currentCommand.substr(5)) - 1; // Users see everything in array at [pos + 1]
+                            if (remove_at >= queuedCommands.size())
+                                printf("Please enter a number within range of commands %d - %d\n", 1, (unsigned)(queuedCommands.size()));
+                            else {
+                                printf("(Command %d. %s will not be performed)\n", (remove_at + 1), queuedCommands[remove_at].c_str());
+                                queuedCommands.erase(queuedCommands.cbegin() + remove_at); // Remove command at position
+                            }
+                        }
+                        catch (std::invalid_argument& e){
+                            if (currentCommand.substr(5).compare("all") == 0) {
+                                queuedCommands.clear();
+                                printf("(All commands have been erased)\n");
+                            }
+                            else
+                                printf("Please enter a valid number or to undo last command just use 'undo'\n"); // Error message
+                        }
+                    }                    
+                }
+
             }
             else
             {
