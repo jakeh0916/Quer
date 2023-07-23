@@ -8,6 +8,7 @@
 // | 07-06-2023    Jake Huseman    Added 'quit' and better display            |
 // | 07-19-2023    Group effort    Moved to github and C++ project            |
 // | 07-20-2023    Jake Huseman    Added basic queueing + running func        |
+// | 07-23-2023    Aidan Sommer    Added show and more func. for undo         |
 // |==========================================================================|
 
 #include <iostream>
