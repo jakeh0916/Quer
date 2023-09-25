@@ -20,7 +20,7 @@ Then queue some commands and type `done` to execute the commands in order.
 
 Quer also supports "recording" and "playing back" queues of commands. 
 
-You can run quer in "recording" mode by entering `quer -r <ScriptName>`. Then enter your commands like usual - but they won't be executed. Instead they will be stored locally on a `.querscript` file. 
+You can run quer in "recording" mode by entering `quer -r <ScriptName>`. Then enter your commands like usual - but they won't be executed. Instead they will be stored locally on a `.bat` file. 
 
 This script can be "played back" using `quer -p <ScriptName>`.
 
