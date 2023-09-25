@@ -19,7 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="source\Quer.cpp" />
+    <ClCompile Include="source\Main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="source\Quer.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
