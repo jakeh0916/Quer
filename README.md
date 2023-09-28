@@ -6,7 +6,8 @@ A simple command-line tool for queueing commands and creating BAT-like scripts o
 
 1. Download/clone the `quer` Visual Studio 2022 solution and build the executable.
 2. Place the built `quer.exe` somewhere that's added to your system PATH.
-    - (Currently only Windows is supported.)
+
+Note: Only Windows is supported. Sorry.
 
 # Usage
 
@@ -24,8 +25,8 @@ You can run quer in "recording" mode by entering `quer -r <ScriptName>`. Then en
 
 This script can be "played back" using `quer -p <ScriptName>`.
 
-### Cleaning Out Querscripts
+### Viewing/Clearing Saved Scripts
 
-If you want to see where your querscripts are being stored, enter `quer -where` which will reveal the location in a Windows File Explorer. 
+If you want to see where your scripts are being stored, enter `quer -fs` which will reveal the location in a Windows File Explorer. Use `quer -ls` to list all saved scripts into the terminal.
 
 You can also use `quer -c` to easily clean out all saved querscripts.
